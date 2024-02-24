@@ -42,8 +42,10 @@ export default function AuthProvider({children}: PropsWithChildren){
             setSession(session);
         });
     }, []);
-    
-    return <AuthContext.Provider value={{session, loading, profile, isAdmin: profile?.group === 'ADMIN'}}>{children}</AuthContext.Provider>
+
+    return (
+        <AuthContext.Provider value={{session, loading, profile, isAdmin: profile?.group === 'ADMIN'}}>{children}</AuthContext.Provider>
+    );
 }
 
 export const useAuth = () => useContext(AuthContext);
