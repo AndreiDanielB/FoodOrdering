@@ -58,7 +58,10 @@ export const useUpdateProduct = () => {
         name: data.name,
         image: data.image,
         price: data.price
-      }).eq('id', data.id).select().single();
+      })
+      .eq('id', data.id)
+      .select()
+      .single();
 
       if(error){
         throw new Error(error.message);
@@ -67,7 +70,7 @@ export const useUpdateProduct = () => {
     },
     async onSuccess(_, {id}) {
       await queryClient.invalidateQueries(['products']);
-      await queryClient.invalidateQueries(['products', data.id]);
+      await queryClient.invalidateQueries(['products', id]);
     },
   });
 };
